@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -14,7 +13,7 @@ public class Picture {
 
     private File mPictureFile;
     private String mPictureName;
-    private String mPictureurl;
+    private String mPictureUrl;
     private Bitmap mBitmap = null;
     private boolean isDownloading = false;
 
@@ -23,7 +22,7 @@ public class Picture {
     }
 
     public Picture(String url){
-        this.mPictureurl = url;
+        this.mPictureUrl = url;
 
         String[] s = url.split("/");
         int nameNumber = s.length - 1;
@@ -60,12 +59,12 @@ public class Picture {
         mBitmap = bitmap;
     }
 
-    public String getPictureurl() {
-        return mPictureurl;
+    public String getPictureUrl() {
+        return mPictureUrl;
     }
 
-    public void setPictureurl(String pictureurl) {
-        mPictureurl = pictureurl;
+    public void setPictureUrl(String pictureUrl) {
+        mPictureUrl = pictureUrl;
     }
 
     public boolean isDownloading() {

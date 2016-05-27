@@ -1,6 +1,7 @@
 package data;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import cache.BitmapUtils;
 import test.newsapp.R;
+import test.newsapp.activity.MainActivity;
 
 
 /**
@@ -63,32 +66,11 @@ public class InfoAdapter extends BaseAdapter {
         viewHolder.mDescriptionTextView.setText(mNewsArrayList.get(position).getDescription());
 
         Picture picture = mNewsArrayList.get(position).getPicture();
-        getPictureBitmap(picture, viewHolder, position);
-        //如果文件存在并且bitmap存在，直接设置进imageview
-
-
+        MainActivity.bitmapUtils.display(viewHolder.mImageView, picture.getPictureUrl());
 
         return convertView;
     }
 
-    private void getPictureBitmap(Picture picture, ViewHolder viewHolder, int position) {
-        if(picture.getPictureFile() != null && picture.getBitmap() != null){
-
-            viewHolder.mImageView.setImageBitmap(picture.getBitmap());
-
-            //如果文件存在但是bitmap不存在，则进行压缩。第一次加载的时候
-        }else if(picture.getPictureFile() != null && picture.getBitmap() == null){
-
-            new ImageTask(viewHolder.mImageView, mNewsArrayList, position).execute(picture.getPictureFile());
-
-            //如果文件不存在并且是第一次加载，则进行下载
-        }else if(picture.getPictureFile() == null && !picture.isDownloading()){
-
-            picture.setIsDownloading(true);
-            new ImageLoadingTask(viewHolder.mImageView, mNewsArrayList, position).execute(picture.getPictureurl());
-
-        }
-    }
 
 
     private final class ViewHolder{

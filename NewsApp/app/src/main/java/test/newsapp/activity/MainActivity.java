@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import cache.BitmapUtils;
 import data.InfoAdapter;
 import data.NewsData;
 import data.Picture;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private InfoAdapter mInfoAdapter;
     private String[] picturePath;
     public static ArrayList<Picture> mPictures = new ArrayList<>();
+    public static BitmapUtils bitmapUtils = new BitmapUtils();
 
 
     @Override
